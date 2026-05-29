@@ -9,7 +9,39 @@ class WeatherWidget extends Component {
       tempUnit: "celsius",
     };
   }
+constructor(props) {
+    super(props);
+    this.state = {
+      windUnit: 'ms', 
+      tempUnit: 'celsius' 
+    };
+  }
 
+  componentDidMount() {
+    const savedWind = localStorage.getItem('weather_windUnit');
+    const savedTemp = localStorage.getItem('weather_tempUnit');
+
+    if (savedWind || savedTemp) {
+      this.setState({
+        windUnit: savedWind || 'ms',
+        tempUnit: savedTemp || 'celsius'
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.windUnit !== this.state.windUnit) {
+      localStorage.setItem('weather_windUnit', this.state.windUnit);
+    }
+    if (prevState.tempUnit !== this.state.tempUnit) {
+      localStorage.setItem('weather_tempUnit', this.state.tempUnit);
+    }
+  }
+
+  handleWindChange = (event) => {
+    this.setState({ windUnit: event.target.value });
+  };
+  // ... остальной код остается без изменений ...
   handleWindChange = (event) => {
     this.setState({ windUnit: event.target.value });
   };
