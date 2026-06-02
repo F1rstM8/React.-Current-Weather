@@ -1,0 +1,75 @@
+$secondary-bg: #87ceeb;
+$border-color: #a9dcf2;
+$text-dark: #111;
+$border-radius-inner: 8px;
+
+.weather-controls {
+  background-color: $secondary-bg;
+  border-radius: $border-radius-inner;
+  padding: 20px;
+  flex: 1;
+  min-width: 250px;
+  border: 2px solid $border-color;
+
+  .search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+    .search-input {
+      flex: 1;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .search-button {
+      padding: 0 15px;
+      border-radius: 6px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
+
+  .control-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      font-size: 1.1rem;
+      color: $text-dark;
+      margin-bottom: 8px;
+    }
+  }
+
+  .weather-select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    min-width: 100%;
+  }
+}
