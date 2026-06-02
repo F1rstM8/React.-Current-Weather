@@ -2,10 +2,30 @@ import { Component } from "react";
 
 class WeatherControls extends Component {
   render() {
-    const { windUnit, tempUnit, onWindChange, onTempChange } = this.props;
+    const {
+      windUnit,
+      tempUnit,
+      onWindChange,
+      onTempChange,
+      searchInput,
+      onSearchChange,
+      onSearchSubmit,
+    } = this.props;
 
     return (
       <section className="weather-controls" aria-label="Weather settings">
+        <form className="search-form" onSubmit={onSearchSubmit}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Введіть місто..."
+            value={searchInput}
+            onChange={onSearchChange}
+          />
+          <button type="submit" className="search-button" aria-label="Search">
+            <i className="fas fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
         <div className="control-group">
           <label htmlFor="wind-select">Wind speed unit:</label>
           <select
