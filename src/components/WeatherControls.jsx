@@ -1,6 +1,5 @@
 import { Component } from "react";
 import "./WeatherControls.scss";
-
 class WeatherControls extends Component {
   render() {
     const {

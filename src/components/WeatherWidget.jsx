@@ -57,7 +57,7 @@ class WeatherWidget extends Component {
       });
     } catch (error) {
       this.setState({
-        error: "City not found or network error",
+        error: "",
         isLoading: false,
       });
     }
@@ -109,14 +109,7 @@ class WeatherWidget extends Component {
     const tempSymbol = tempUnit === "celsius" ? "°C" : "°F";
     const windSymbol = windUnit === "ms" ? "M/s" : "Km/h";
     const cityName = weatherData.name;
-
-
-    const localDate = new Date();
-
-    const utcTime = localDate.getTime() + localDate.getTimezoneOffset() * 60000;
-
-    const cityDate = new Date(utcTime + weatherData.timezone * 1000);
-    const currentTime = cityDate.toLocaleTimeString("uk-UA", {
+    const currentTime = new Date().toLocaleTimeString("uk-UA", {
       hour: "2-digit",
       minute: "2-digit",
     });
