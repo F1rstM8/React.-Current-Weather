@@ -1,8 +1,8 @@
-import WeatherWidget from './components/WeatherWidget';
-
+import WeatherWidget from "./components/WeatherWidget";
+import './App.scss';
 function App() {
   return (
-    <main style={{ padding: '40px 20px' }}>
+   <main className="app-main">
       <WeatherWidget />
     </main>
   );

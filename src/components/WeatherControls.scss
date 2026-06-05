@@ -1,49 +1,55 @@
 $secondary-bg: #87ceeb;
 $border-color: #a9dcf2;
 $text-dark: #111;
-$border-radius-inner: 8px;
+$border-radius-inner: 0.5rem;
+
+$input-border: #ccc;
+$btn-bg: #333;
+$btn-bg-hover: #555;
+$white-transparent: rgba(255, 255, 255, 0.4);
+$white: #fff;
 
 .weather-controls {
   background-color: $secondary-bg;
   border-radius: $border-radius-inner;
-  padding: 20px;
+  padding: 1.25rem; /* 20px */
   flex: 1;
-  min-width: 250px;
-  border: 2px solid $border-color;
+  min-width: 15.625rem; /* 250px */
+  border: 0.125rem solid $border-color; /* 2px */
 
   .search-form {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    gap: 0.625rem; /* 10px */
+    margin-bottom: 1.5625rem; /* 25px */
+    padding-bottom: 1.25rem; /* 20px */
+    border-bottom: 0.0625rem solid $white-transparent; /* 1px */
 
     .search-input {
       flex: 1;
-      padding: 10px 15px;
+      padding: 0.625rem 0.9375rem; /* 10px 15px */
       font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      border-radius: 0.375rem; /* 6px */
+      border: 0.0625rem solid $input-border;
       outline: none;
     }
 
     .search-button {
-      padding: 0 15px;
-      border-radius: 6px;
+      padding: 0 0.9375rem; /* 0 15px */
+      border-radius: 0.375rem;
       border: none;
-      background-color: #333;
-      color: white;
+      background-color: $btn-bg;
+      color: $white;
       cursor: pointer;
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: #555;
+        background-color: $btn-bg-hover;
       }
     }
   }
 
   .control-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     display: flex;
     flex-direction: column;
 
@@ -54,12 +60,12 @@ $border-radius-inner: 8px;
     label {
       font-size: 1.1rem;
       color: $text-dark;
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem; /* 8px */
     }
   }
 
   .weather-select {
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     font-size: 1rem;
     border-radius: 6px;
     border: 1px solid #ccc;

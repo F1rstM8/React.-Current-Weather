@@ -47,7 +47,11 @@ class WeatherWidget extends Component {
       const response = await fetch(url);
 
       if (!response.ok) {
-        throw new Error("Failed to fetch weather data");
+        if (response.status === 404) {
+          throw new Error("Місто не знайдено. Перевірте правильність назви.");
+        }
+
+        throw new Error("Помилка сервера. Спробуйте пізніше.");
       }
       const data = await response.json();
       this.setState({
@@ -57,7 +61,7 @@ class WeatherWidget extends Component {
       });
     } catch (error) {
       this.setState({
-        error: "",
+        error: error.message || "Помилка завантаження даних",
         isLoading: false,
       });
     }
@@ -78,9 +82,13 @@ class WeatherWidget extends Component {
 
     const { searchInput } = this.state;
     if (searchInput.trim() === "") return;
-    this.setState({ city: searchInput, isLoading: true, error: null }, () => {
-      this.fetchWeatherData();
-    });
+
+    this.setState(
+      { city: searchInput, searchInput: "", isLoading: true, error: null },
+      () => {
+        this.fetchWeatherData();
+      },
+    );
   };
 
   render() {
@@ -100,16 +108,20 @@ class WeatherWidget extends Component {
         </article>
       );
     }
-    const baseTempC = weatherData.main.temp;
-    const baseWindMs = weatherData.wind.speed;
+    const baseTempC = weatherData?.main?.temp;
+    const baseWindMs = weatherData?.wind?.speed;
     const displayTemp =
       tempUnit === "celsius" ? baseTempC : baseTempC * 1.8 + 32;
     const displayWind = windUnit === "ms" ? baseWindMs : baseWindMs * 3.6;
 
     const tempSymbol = tempUnit === "celsius" ? "°C" : "°F";
     const windSymbol = windUnit === "ms" ? "M/s" : "Km/h";
-    const cityName = weatherData.name;
-    const currentTime = new Date().toLocaleTimeString("uk-UA", {
+    const cityName = weatherData?.name;
+    const localDate = new Date();
+    const utcTime = localDate.getTime() + localDate.getTimezoneOffset() * 60000;
+    const cityDate = new Date(utcTime + (weatherData?.timezone || 0) * 1000);
+
+    const currentTime = cityDate.toLocaleTimeString("uk-UA", {
       hour: "2-digit",
       minute: "2-digit",
     });
